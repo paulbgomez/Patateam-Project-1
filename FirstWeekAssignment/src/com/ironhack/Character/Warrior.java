@@ -1,6 +1,6 @@
-package com.ironhack.main.Character;
+package com.ironhack.Character;
 
-import Interface.Attacker;
+import com.ironhack.Interface.Attacker;
 
 public class Warrior extends Character implements Attacker {
     private int stamina;
@@ -8,12 +8,13 @@ public class Warrior extends Character implements Attacker {
 
     public Warrior(int id, String name, int hp, boolean isAlive, int stamina, int strength) {
         super(id, name, hp, isAlive);
-        this.stamina = stamina;
-        this.strength = strength;
+        setStamina(stamina);
+        setStrength(strength);
     }
 
     @Override
     public int attack(int element) {
+        // TODO: ángel
         return 0;
     }
 

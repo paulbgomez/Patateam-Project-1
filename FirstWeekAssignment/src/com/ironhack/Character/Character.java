@@ -1,4 +1,4 @@
-package com.ironhack.main.Character;
+package com.ironhack.Character;
 
 public abstract class Character {
     private int id;
@@ -7,11 +7,13 @@ public abstract class Character {
     private boolean isAlive;
 
     public Character(int id, String name, int hp, boolean isAlive) {
-        this.id = id;
-        this.name = name;
-        this.hp = hp;
-        this.isAlive = isAlive;
+        setId(id);
+        setName(name);
+        setHp(hp);
+        setAlive(isAlive);
     }
+
+    // perder vida
 
     public int getId() {
         return id;
