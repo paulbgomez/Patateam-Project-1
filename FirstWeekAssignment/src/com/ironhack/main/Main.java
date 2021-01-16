@@ -1,5 +1,6 @@
 package com.ironhack.main;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -79,9 +80,7 @@ public class Main {
         }
         switch (option){
             case 1:
-                // llamar al método pertinente
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
-                showCreateMenu();
+                inputDataForCharacters();
                 break;
             case 2:
                 // llamar al método pertinente
@@ -97,5 +96,69 @@ public class Main {
                 showMainMenu();
                 break;
         }
+    }
+    public static void inputDataForCharacters(){
+        Scanner scanner = new Scanner(System.in);
+        boolean whileBreaker = false;
+        String charType = "";
+        String charName = "";
+        int charHP = 0;
+        int charStamina = 0;
+        int charStrength = 0;
+        int charMana = 0;
+        int charIntelligence = 0;
+
+        System.out.println("Elige el tipo de personaje (Warrior / Wizard)");
+        while (!whileBreaker){
+            charType = scanner.nextLine();
+            if (charType.equals("Warrior") || charType.equals("Wizard")){
+                whileBreaker = true;
+            }
+        }
+        System.out.println("Elige el nombre de tu " + charType + ":");
+        charName = scanner.nextLine();
+        System.out.println("Elige la vida de " + charName + ":");
+        charHP = scanner.nextInt();
+        scanner.nextLine();
+
+
+        switch (charType){
+            case "Warrior":
+                System.out.println("Elige la resistencia de " + charName + ":");
+                charStamina = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Elige la fuerza de " + charName + ":");
+                charStrength = scanner.nextInt();
+
+                // AQUÍ LLAMARÍAMOS AL CONSTRUCTOR CON ESTOS PARÁMETROS
+                System.out.println("Tu personaje es:");
+                System.out.println("Tipo: " + charType);
+                System.out.println("Nombre: " + charName);
+                System.out.println("Vida: " + charHP);
+                System.out.println("Resistencia: " + charStamina);
+                System.out.println("Fuerza: " + charStrength);
+
+                break;
+            case "Wizard":
+                System.out.println("Elige el maná de " + charName + ":");
+                charMana = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Elige la inteligencia de " + charName + ":");
+                charIntelligence = scanner.nextInt();
+
+                // AQUÍ LLAMARÍAMOS AL CONSTRUCTOR CON ESTOS PARÁMETROS EN VEZ DE IMPRIMIR
+                System.out.println("Tu personaje es:");
+                System.out.println("Tipo: " + charType);
+                System.out.println("Nombre: " + charName);
+                System.out.println("Vida: " + charHP);
+                System.out.println("Maná: " + charMana);
+                System.out.println("Fuerza: " + charIntelligence);
+
+
+
+                break;
+        }
+
+
     }
 }
