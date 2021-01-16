@@ -5,6 +5,8 @@ import java.util.*;
 // FIESTAAAA
 public class Party {
     private List<Character> npcs;
+    private static List<Character> generatedCharactersFromMenu = new ArrayList<>();
+
 
     //Generate random party size between 0 and 10
     Random random = new Random();
@@ -20,6 +22,11 @@ public class Party {
     // Constructor con arraylist de miembros
 
     // static crear party desde el menú
+    public static List<Character> addFromMenu(Character newCharacter) {
+        //private static List<Character> generatedCharactersFromMenu = new ArrayList<>();
+        generatedCharactersFromMenu.add(newCharacter);
+        return generatedCharactersFromMenu;
+    }
 
     // send to graveyard (index, graveyard)
 
@@ -38,6 +45,10 @@ public class Party {
 
     public int getRandomPartySize() {
         return randomPartySize;
+    }
+
+    public static List<Character> getGeneratedCharactersFromMenu() {
+        return generatedCharactersFromMenu;
     }
 
     public List<Character> getNpcs() {
