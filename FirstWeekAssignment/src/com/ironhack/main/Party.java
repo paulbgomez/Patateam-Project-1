@@ -11,7 +11,6 @@ public class Party {
     private static List<Object> partyTeam2 = new ArrayList<>();
     private static List<Object> graveYard = new ArrayList<>();
 
-
     //Generate random party size between 0 and 10
     private static Random randomNumber = new Random();
     private static int randomPartySize = (randomNumber.nextInt(10)) + 1;
@@ -28,7 +27,14 @@ public class Party {
     }
 
     // send to graveyard (index, graveyard)
-
+    public static void sendToGraveyard(Object deadCharacter, List<Object> party){
+        for (Object myObj: party) {
+            if(myObj.equals(deadCharacter)){
+                party.remove(myObj);
+                graveYard.add(myObj);
+            }
+        }
+    }
     // export this party
 
     // static que importe y devuelva la party o Contructor que importe
