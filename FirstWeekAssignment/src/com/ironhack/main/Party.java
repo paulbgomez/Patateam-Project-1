@@ -22,7 +22,7 @@ public class Party {
     // Constructor con arraylist de miembros
 
     // static crear party desde el menú. Checkear si se puede añadir tanto warrior como wizard
-    public static void addCharacter(Character newCharacter, List<Character> partyTeam) {
+    public static void addCharacter(Character newCharacter, List<Object> partyTeam) {
         partyTeam.add(newCharacter);
     }
 
