@@ -1,26 +1,39 @@
 package com.ironhack.Character;
 
 public abstract class Character {
+    // Properties
     private int id;
     private String name;
     private int hp;
     private boolean isAlive;
 
-    public Character(int id, String name, int hp, boolean isAlive) {
-        setId(id);
+    // Constructor
+    public Character(String name, int hp) {
+        setId();
         setName(name);
         setHp(hp);
-        setAlive(isAlive);
+        setAlive(true); // va asi?
     }
 
-    // perder vida
+    // Methods --------------------------
 
+    // Update Hp ??????????????? no se si se puede poner asi
+    public void updateHp (int attackValue) {
+        setHp(getHp()-attackValue);
+        if (getHp() <= 0) {
+            setAlive(false);
+        }
+    }
+
+    // Getters & Setters
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId() {
+        int count = 1;
+        this.id = count;
+        count++;
     }
 
     public String getName() {
@@ -39,11 +52,11 @@ public abstract class Character {
         this.hp = hp;
     }
 
-    public boolean isAlive() {
+    public boolean getIsAlive() {
         return isAlive;
     }
-
+    // no se si esto iria asi
     public void setAlive(boolean alive) {
-        isAlive = alive;
+        this.isAlive = alive;
     }
 }

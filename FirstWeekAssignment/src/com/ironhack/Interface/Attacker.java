@@ -1,5 +1,6 @@
 package com.ironhack.Interface;
 
 public interface Attacker {
-    int attack(int element);
+    // Methods
+    public int attack();
 }
