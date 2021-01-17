@@ -3,6 +3,8 @@ package com.ironhack.main;
 import com.ironhack.Character.Warrior;
 import com.ironhack.Character.Wizard;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 // FIESTAAAA
@@ -11,9 +13,15 @@ public class Party {
     private static List<Object> partyTeam2 = new ArrayList<>();
     private static List<Object> graveYard = new ArrayList<>();
 
+    //Headers and separators for the CSV file
+    private static final String COMMA_DELIMITER = ",";
+    private static final String LINE_SEPARATOR = "\n";
+    private static final String HEADER = "id,Type,Name,hp,First attribute,Second attribute";
+
     //Generate random party size between 0 and 10
     private static Random randomNumber = new Random();
     private static int randomPartySize = (randomNumber.nextInt(10)) + 1;
+
 
     // Constructor con número de miembros de party que hace party random
 
@@ -36,6 +44,54 @@ public class Party {
         }
     }
     // export this party
+    public static void exportHeroesAsCSV() {
+        List empList = new ArrayList();
+        FileWriter exportedCSV = null;
+        try {
+            exportedCSV = new FileWriter("Heroes.csv");
+
+            //Adding the header
+            exportedCSV.append(HEADER);
+            //New Line after the header
+            exportedCSV.append(LINE_SEPARATOR);
+
+            //Iterate the empList
+            Iterator it = empList.iterator();
+            while (it.hasNext()) {
+                Character e = (Character) it.next();
+                exportedCSV.append(String.valueOf(e.//Method to get the id or generate it
+                        ));
+                exportedCSV.append(COMMA_DELIMITER);
+                exportedCSV.append(e.//Method for the type);
+                );
+                exportedCSV.append(COMMA_DELIMITER);
+                exportedCSV.append(e.//Method for the name);
+                );
+                exportedCSV.append(COMMA_DELIMITER);
+                exportedCSV.append(String.valueOf(e.//Method to get hp
+                        ));
+                exportedCSV.append(LINE_SEPARATOR);
+                exportedCSV.append(String.valueOf(e.//Method to get first att
+                ));
+                exportedCSV.append(COMMA_DELIMITER);
+                exportedCSV.append(String.valueOf(e.//Method to get second att
+                ));
+                exportedCSV.append(LINE_SEPARATOR);
+            }
+            System.out.println("Write to CSV file Succeeded!!!");
+        } catch (Exception ee) {
+            ee.printStackTrace();
+        } finally {
+            try {
+                exportedCSV.close();
+            } catch (IOException ie) {
+                System.out.println("Error occured while closing the CSV");
+                ie.printStackTrace();
+            }
+        }
+    }
+
+
 
     // static que importe y devuelva la party o Contructor que importe
 
