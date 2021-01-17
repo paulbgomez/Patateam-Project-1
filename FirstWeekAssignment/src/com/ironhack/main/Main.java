@@ -13,18 +13,16 @@ public class Main {
         Scanner scanOption = new Scanner(System.in);
         int option=0;
 
-        System.out.println("============ Patapasillo war ============");
-        System.out.println();
-        System.out.println("Elige una opción escribiendo el número:");
-        System.out.println();
+        System.out.println("============ Patapasillo war ============\n");
         System.out.println("1- Crear personajes y equipos manualmente");
         System.out.println("2- Crear equipos enteros aleatoriamente");
         System.out.println("3- Importar un equipo desde un archivo .csv");
         System.out.println("4- Exportar equipo existente a un archivo .csv");
         System.out.println("5- Ver personajes muertos");
-        System.out.println("6- ¡Guerra entre los equipos!");
+        System.out.println("6- ¡Guerra entre los equipos!\n");
 
         while (option < 1 || option > 7){
+            System.out.println("Elige una opción válida con el teclado:");
             option = scanOption.nextInt();
             scanOption.nextLine();
         }
@@ -66,15 +64,15 @@ public class Main {
         int option=0;
 
         System.out.println("============ Patapasillo war ============");
-        System.out.println("            Crear personajes");
-        System.out.println("Elige una opción escribiendo el número:");
-        System.out.println();
+        System.out.println("            Crear personajes\n");
         System.out.println("1- Crear personaje manualmente");
-        System.out.println("2- Modificar personaje creado");
-        System.out.println("3- Mover un personaje creado de un equipo a otro");
-        System.out.println("4- Atrás");
+        System.out.println("2- Mostrar un personaje creado");
+        System.out.println("3- Mostrar equipos");
+        System.out.println("4- Mover un personaje creado de un equipo a otro");
+        System.out.println("5- Atrás\n");
 
-        while (option < 1 || option > 4){
+        while (option < 1 || option > 5){
+            System.out.println("Elige una opción válida con el teclado");
             option = scanOption.nextInt();
             scanOption.nextLine();
         }
@@ -93,6 +91,11 @@ public class Main {
                 showCreateMenu();
                 break;
             case 4:
+                // llamar al método pertinente
+                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
+                showCreateMenu();
+                break;
+            case 5:
                 showMainMenu();
                 break;
         }
@@ -107,9 +110,10 @@ public class Main {
         int charStrength = 0;
         int charMana = 0;
         int charIntelligence = 0;
+        int partyNumber = 0;
 
-        System.out.println("Elige el tipo de personaje (Warrior / Wizard)");
         while (!whileBreaker){
+            System.out.println("Elige el tipo de personaje (Warrior / Wizard):");
             charType = scanner.nextLine();
             if (charType.equals("Warrior") || charType.equals("Wizard")){
                 whileBreaker = true;
@@ -136,7 +140,7 @@ public class Main {
                 System.out.println("Nombre: " + charName);
                 System.out.println("Vida: " + charHP);
                 System.out.println("Resistencia: " + charStamina);
-                System.out.println("Fuerza: " + charStrength);
+                System.out.println("Fuerza: " + charStrength + "\n");
 
                 break;
             case "Wizard":
@@ -146,18 +150,24 @@ public class Main {
                 System.out.println("Elige la inteligencia de " + charName + ":");
                 charIntelligence = scanner.nextInt();
 
-                // AQUÍ LLAMARÍAMOS AL CONSTRUCTOR CON ESTOS PARÁMETROS EN VEZ DE IMPRIMIR
+                // AQUÍ LLAMARÍAMOS AL CONSTRUCTOR CON ESTOS PARÁMETROS
                 System.out.println("Tu personaje es:");
                 System.out.println("Tipo: " + charType);
                 System.out.println("Nombre: " + charName);
                 System.out.println("Vida: " + charHP);
                 System.out.println("Maná: " + charMana);
-                System.out.println("Fuerza: " + charIntelligence);
+                System.out.println("Fuerza: " + charIntelligence + "\n");
 
 
 
                 break;
         }
+        while (partyNumber < 1 || partyNumber > 2){
+            System.out.println("Elige en qué equipo quieres que participe (1 ó 2)");
+            partyNumber = scanner.nextInt();
+            scanner.nextLine();
+        }
+        showCreateMenu();
 
 
     }
