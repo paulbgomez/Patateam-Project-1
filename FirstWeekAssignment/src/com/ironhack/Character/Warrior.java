@@ -19,7 +19,7 @@ public class Warrior extends Character /*implements Attacker*/{
     private int stamina;
     private int strength;
 
-    // Constructor --> no habria que pasarle el ID ni el isAlive no??
+    // Constructor
     public Warrior(String name, int hp, int stamina, int strength) {
         super(name, hp);
         setStamina(stamina);
@@ -37,17 +37,17 @@ public class Warrior extends Character /*implements Attacker*/{
 
     // Attack
     public void attack(Character character) {
-        int attackValue = 0;
+        int attackValue;
         if (getStamina() >= 5) {
-            attackValue = strength;
+            attackValue = getStrength();
             updateStamina(getStamina()-5);
             System.out.println(getName() + " mete un hachazo a su oponente y le deja del revés, quitándole " + attackValue +" puntos de vida");
         } else {
-            attackValue = strength/2;
+            attackValue = getStrength()/2;
             updateStamina(getStamina()+1);
             System.out.println(getName() + " le pega un capón a su oponente y le quita " + attackValue + " puntos de vida");
         }
-        //return attackValue;
+        character.decreaseHp(attackValue);
     }
 
     // Update stamina
@@ -95,7 +95,6 @@ public class Warrior extends Character /*implements Attacker*/{
         int stamina = random.nextInt(WARRIOR_STAMINA_MAX - WARRIOR_STAMINA_MIN + 1) + WARRIOR_STAMINA_MIN;
         int strength = random.nextInt(WARRIOR_STRENGTH_MAX - WARRIOR_STRENGTH_MIN + 1) + WARRIOR_STRENGTH_MIN;
         return new Warrior(id, name, hp, stamina, strength);
-
     }
 
 }

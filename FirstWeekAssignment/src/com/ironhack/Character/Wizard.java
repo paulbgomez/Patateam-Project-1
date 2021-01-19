@@ -39,7 +39,7 @@ public class Wizard extends Character /*implements Attacker */{
 
     // Attack
     public void attack(Character character) {
-        int attackValue = 0;
+        int attackValue;
         if (getMana() >= 5) {
             attackValue = intelligence;
             updateMana(getMana()-5);
@@ -49,7 +49,7 @@ public class Wizard extends Character /*implements Attacker */{
             updateMana(getMana()+1);
             System.out.println(getName() + " acaricia con su varita a su oponente y le quita " + attackValue + " puntos de vida de la verguenza ajena que da");
         }
-        //return attackValue;
+        character.decreaseHp(attackValue);
     }
 
     // Update Mana

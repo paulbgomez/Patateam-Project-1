@@ -34,20 +34,19 @@ public abstract class Character implements Attacker {
         setId();
         setName(name);
         setHp(hp);
-        setAlive(true); // va asi?
+        setAlive(true);
     }
 
     // Methods --------------------------
 
-    // Update Hp ??????????????? no se si se puede poner asi
-    public void updateHp (int attackValue) {
+    // Update Hp --> Falta llamar al metodo sendtograveyard??
+    public void decreaseHp (int attackValue) {
         setHp(getHp()-attackValue);
         if (getHp() <= 0) {
             setHp(0);
             setAlive(false);
         }
     }
-
 
     // Getters & Setters
     public int getId() {
@@ -58,10 +57,6 @@ public abstract class Character implements Attacker {
     }
 
     public void setId() {
-//        int count = 1;
-//        this.id = count;
-//        count++;
-        // el ID tiene que ser único entre todos los Character
         this.id = generateId();
     }
 
