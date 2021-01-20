@@ -1,17 +1,21 @@
 package com.ironhack.main;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
 import static com.ironhack.main.Party.*;
 
 public class Main {
+    static Graveyard graveyard = new Graveyard();
+    static Party party1;
+    static Party party2;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         showMainMenu();
     }
 
-    public static void showMainMenu() {
+    public static void showMainMenu() throws IOException {
         Scanner scanOption = new Scanner(System.in);
         int option=0;
 
@@ -20,10 +24,11 @@ public class Main {
         System.out.println("2- Crear equipos enteros aleatoriamente");
         System.out.println("3- Importar un equipo desde un archivo .csv");
         System.out.println("4- Exportar equipo existente a un archivo .csv");
-        System.out.println("5- Ver personajes muertos");
-        System.out.println("6- ¡Guerra entre los equipos!\n");
+        System.out.println("5- Mostrar equipos si ya existen");
+        System.out.println("6- Ver personajes muertos");
+        System.out.println("7- ¡Guerra entre los equipos!\n");
 
-        while (option < 1 || option > 7){
+        while (option < 1 || option > 8){
             System.out.println("Elige una opción válida con el teclado:");
             option = scanOption.nextInt();
             scanOption.nextLine();
@@ -34,25 +39,25 @@ public class Main {
                 showCreateMenu();
                 break;
             case 2:
-                // llamar al método pertinente
-
+                showRandomMenu();
                 break;
             case 3:
-                // llamar al método pertinente
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
-                showMainMenu();
+                showImportMenu();
                 break;
             case 4:
-                // llamar al método pertinente
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
+
                 showMainMenu();
                 break;
             case 5:
-                // llamar al método pertinente ¿(showGraveyard)?
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
+                System.out.println(party1);
+                System.out.println(party2);
                 showMainMenu();
                 break;
             case 6:
+                System.out.println(graveyard);
+                showMainMenu();
+                break;
+            case 7:
                 // llamar al método pertinente
                 System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
                 showMainMenu();
@@ -60,17 +65,17 @@ public class Main {
         }
     }
 
-    public static void showCreateMenu(){
+    public static void showCreateMenu() throws IOException {
         Scanner scanOption = new Scanner(System.in);
         int option=0;
 
         System.out.println("============ Patapasillo war ============");
         System.out.println("            Crear personajes\n");
         System.out.println("1- Crear personaje manualmente");
-        System.out.println("2- Mostrar equipos");
+        System.out.println("2- Mostrar equipos creados");
         System.out.println("3- Atrás\n");
 
-        while (option < 1 || option > 5){
+        while (option < 1 || option > 3){
             System.out.println("Elige una opción válida con el teclado");
             option = scanOption.nextInt();
             scanOption.nextLine();
@@ -85,21 +90,92 @@ public class Main {
                 showCreateMenu();
                 break;
             case 3:
-                // llamar al método pertinente
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
-                showCreateMenu();
-                break;
-            case 4:
-                // llamar al método pertinente
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
-                showCreateMenu();
-                break;
-            case 5:
                 showMainMenu();
                 break;
         }
     }
-    public static void inputDataForCharacters(){
+    public static void showRandomMenu() throws IOException {
+        Scanner scanOption = new Scanner(System.in);
+        int option=0;
+
+        System.out.println("============ Patapasillo war ============");
+        System.out.println("            Crear personajes\n");
+        System.out.println("1- Generar equipo 1");
+        System.out.println("2- Generar equipo 2");
+        System.out.println("3- Atrás\n");
+
+        while (option < 1 || option > 3){
+            System.out.println("Elige una opción válida con el teclado");
+            option = scanOption.nextInt();
+            scanOption.nextLine();
+        }
+        switch (option){
+            case 1:
+                party1 = new Party(10);
+                break;
+            case 2:
+                party2 = new Party(10);
+                break;
+            case 3:
+                showMainMenu();
+                break;
+        }
+    }
+    public static void showImportMenu() throws IOException {
+        Scanner scanOption = new Scanner(System.in);
+        int option=0;
+
+        System.out.println("============ Patapasillo war ============");
+        System.out.println("            Importar equipos\n");
+        System.out.println("1- Importar equipo 1");
+        System.out.println("2- Importar equipo 2");
+        System.out.println("3- Atrás\n");
+
+        while (option < 1 || option > 3){
+            System.out.println("Elige una opción válida con el teclado");
+            option = scanOption.nextInt();
+            scanOption.nextLine();
+        }
+        switch (option){
+            case 1:
+                party1 = new Party();
+                party1.importCSV();
+                showCreateMenu();
+                break;
+            case 2:
+                party2 = new Party();
+                party2.importCSV();
+                showCreateMenu();
+                break;
+        }
+    }
+    public static void showExportMenu() throws IOException {
+        Scanner scanOption = new Scanner(System.in);
+        int option=0;
+
+        System.out.println("============ Patapasillo war ============");
+        System.out.println("            Exportar equipos\n");
+        System.out.println("1- Exportar equipo 1");
+        System.out.println("2- Exportar equipo 2");
+        System.out.println("3- Atrás\n");
+
+        while (option < 1 || option > 3){
+            System.out.println("Elige una opción válida con el teclado");
+            option = scanOption.nextInt();
+            scanOption.nextLine();
+        }
+        switch (option){
+            case 1:
+                party1.exportCSV();
+                showCreateMenu();
+                break;
+            case 2:
+                showCreateMenu();
+                break;
+        }
+    }
+
+    public static void inputDataForCharacters() throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean whileBreaker = false;
         String charType = "";

@@ -13,9 +13,23 @@ public abstract class Character implements Attacker {
     private static final String[] CHARACTER_NAMES = {
             "Aphior","Ulineth","Stratorn","Aqirax","Idroviar","Ondodalf","Egavius","Ogeqihr","Qrubarin","Izudor",
             "Enior","Uzirnas","Manoran","Anitarish","Iqill","Odesorin","Udegreth","Sheveus","Usiprix","Uzelyn",
-            "Raharad","Ozahl","Troronin","Erune","Kribin","Irodalf","Oxium","Irhan","Iveprix","Oligast"
+            "Raharad","Ozahl","Troronin","Erune","Kribin","Irodalf","Oxium","Irhan","Iveprix","Oligast",
+            "Gwen LightBolt", "Harald Ulmer", "Mordecai el Nigromante", "Kendra la Trituradora", "Tentáculo Púrpura",
+            "Minerva Garra de Cuervo", "Feanwyn SlashHammer", "El Barón Rojo", "Lorelei Susurramentes",
+            "Hittokiri Battousai", "Hanzo Hasashi", "Lord Gilmoure", "Riddles", "Magnus de la Tormenta",
+            "Circe ShapeShifter", "Sir Isaac Manzana Pesada", "Altaïr Mirada Certera", "Úrsula de los ocho brazos",
+            "Tycho Visión Penetrante", "Deckard Caín", "Mara la de la Vara", "Malfurion Tempestira",
+            "Fidda Cabello de Plata", "Grom el Terrible", "Lilith", "Lisbeth", "Sir Graham", "Amanra del Cetro Dorado",
+            "Allen de la Sombra Gris", "Nymphadora", "Erwin WaveBreaker", "Erestor Puño de Hierro", "Leonardo",
+            "Donatello", "Raphael", "Michelangello", "Splinter", "Shredder", "Raiden", "Heisenberg el Indeciso",
+            "El Mago Blanco", "Morgana", "Eyra Rompehuesos", "Sigrid Ojos Gélidos", "Vilhelm el Atroz",
+            "Bjorn Zarpa de Oso", "Stephen el Rey Halcón", "Natasha Lanza Brasas", "Grimmwolf", "StarKiller",
+            "Pirata Feo", "Olwen de las Nieves", "Finn", "Jake", "Amaterasu", "Atreus", "Sybil Snake",
+            "Kaylee la Luciérnaga", "Rubik RompeCabezas", "Elentari", "Gweon Barba Cana", "Tarian StormShield",
+            "Kyla Lanzaveloz", "Zelda", "Roy Mustang", "Wulfric el Pecas", "Lady Vulture", "Ragnar Lothbrook",
+            "Esteban Trabajos, fundador de la Manzana", "Guillermo Puertas, fundador de la Ventana"
     };
-    public static final String SUFFIX = "_Jr";
+    public static final String SUFFIX = " Jr.";
 
     // Properties
     private int id;

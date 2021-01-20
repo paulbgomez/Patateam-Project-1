@@ -90,5 +90,9 @@ public class Party {
         scanner.close();
     }
 
+
+    public List<Character> getCharacterList() {
+        return characterList;
+    }
 }
 
