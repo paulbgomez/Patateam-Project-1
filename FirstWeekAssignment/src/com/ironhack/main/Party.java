@@ -94,5 +94,13 @@ public class Party {
     public List<Character> getCharacterList() {
         return characterList;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+                "List of characters =" + characterList +
+                '}';
+    }
 }
 

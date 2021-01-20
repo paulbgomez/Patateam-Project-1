@@ -102,4 +102,13 @@ public class Wizard extends Character /*implements Attacker */{
         return new Wizard(id, name, hp, mana, intelligence);
     }
 
+    @Override
+    public String toString() {
+        return "Wizard{" +
+                "Name=" + this.getName() +
+                ", Health Points=" + this.getHp() +
+                ", Mana=" + mana +
+                ", Intelligence=" + intelligence +
+                '}';
+    }
 }

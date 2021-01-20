@@ -1,5 +1,9 @@
 package com.ironhack.main;
 
+import com.ironhack.Character.Character;
+import com.ironhack.Character.Warrior;
+import com.ironhack.Character.Wizard;
+
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
@@ -45,12 +49,19 @@ public class Main {
                 showImportMenu();
                 break;
             case 4:
-
-                showMainMenu();
+                showExportMenu();
                 break;
             case 5:
-                System.out.println(party1);
-                System.out.println(party2);
+                if (party1 == null){
+                    System.out.println("Equipo 1 aún vacío");
+                } else {
+                    System.out.println("Equipo 1: " + party1);
+                }
+                if (party2 == null){
+                    System.out.println("Equipo 2 aún vacío");
+                } else {
+                    System.out.println("Equipo 2: " + party2);
+                }
                 showMainMenu();
                 break;
             case 6:
@@ -71,8 +82,8 @@ public class Main {
 
         System.out.println("============ Patapasillo war ============");
         System.out.println("            Crear personajes\n");
-        System.out.println("1- Crear personaje manualmente");
-        System.out.println("2- Mostrar equipos creados");
+        System.out.println("1- Crear personaje para el equipo 1");
+        System.out.println("2- Crear personaje para el equipo 2");
         System.out.println("3- Atrás\n");
 
         while (option < 1 || option > 3){
@@ -81,25 +92,22 @@ public class Main {
             scanOption.nextLine();
         }
         switch (option){
-            case 1:
-                inputDataForCharacters();
-                break;
-            case 2:
-                // llamar al método pertinente
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
-                showCreateMenu();
-                break;
             case 3:
                 showMainMenu();
+                break;
+            default:
+                inputDataForCharacters(option);
                 break;
         }
     }
     public static void showRandomMenu() throws IOException {
         Scanner scanOption = new Scanner(System.in);
         int option=0;
+        Random random = new Random();
+        int numeroRandom = random.nextInt(15)+1;
 
         System.out.println("============ Patapasillo war ============");
-        System.out.println("            Crear personajes\n");
+        System.out.println("       Generar equipo aleatorio\n");
         System.out.println("1- Generar equipo 1");
         System.out.println("2- Generar equipo 2");
         System.out.println("3- Atrás\n");
@@ -111,15 +119,19 @@ public class Main {
         }
         switch (option){
             case 1:
-                party1 = new Party(10);
+                party1 = new Party(numeroRandom);
                 break;
             case 2:
-                party2 = new Party(10);
+                party2 = new Party(numeroRandom);
                 break;
             case 3:
                 showMainMenu();
                 break;
         }
+        System.out.println("El equipo " + option + " ha sido generado con " + numeroRandom + " miembros. Pulsa intro para continuar.");
+        scanOption.nextLine();
+        showRandomMenu();
+
     }
     public static void showImportMenu() throws IOException {
         Scanner scanOption = new Scanner(System.in);
@@ -140,14 +152,18 @@ public class Main {
             case 1:
                 party1 = new Party();
                 party1.importCSV();
-                showCreateMenu();
                 break;
             case 2:
                 party2 = new Party();
                 party2.importCSV();
-                showCreateMenu();
+                break;
+            case 3:
+                showMainMenu();
                 break;
         }
+        System.out.println("El equipo " + option + " ha sido importado desde el archivo .csv. Pulsa intro para continuar.");
+        scanOption.nextLine();
+        showImportMenu();
     }
     public static void showExportMenu() throws IOException {
         Scanner scanOption = new Scanner(System.in);
@@ -167,15 +183,21 @@ public class Main {
         switch (option){
             case 1:
                 party1.exportCSV();
-                showCreateMenu();
                 break;
             case 2:
-                showCreateMenu();
+                party2.exportCSV();
                 break;
+            case 3:
+                showMainMenu();
+                break;
+
         }
+        System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
+        scanOption.nextLine();
+        showExportMenu();
     }
 
-    public static void inputDataForCharacters() throws IOException {
+    public static void inputDataForCharacters(int partyNumber) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean whileBreaker = false;
         String charType = "";
@@ -185,7 +207,7 @@ public class Main {
         int charStrength = 0;
         int charMana = 0;
         int charIntelligence = 0;
-        int partyNumber = 0;
+        Character character;
 
         while (!whileBreaker){
             System.out.println("Elige el tipo de personaje (Warrior / Wizard):");
@@ -208,15 +230,7 @@ public class Main {
                 scanner.nextLine();
                 System.out.println("Elige la fuerza de " + charName + ":");
                 charStrength = scanner.nextInt();
-
-                // AQUÍ LLAMARÍAMOS AL CONSTRUCTOR CON ESTOS PARÁMETROS
-                System.out.println("Tu personaje es:");
-                System.out.println("Tipo: " + charType);
-                System.out.println("Nombre: " + charName);
-                System.out.println("Vida: " + charHP);
-                System.out.println("Resistencia: " + charStamina);
-                System.out.println("Fuerza: " + charStrength + "\n");
-
+                character = new Warrior(charName,charHP,charStamina,charStrength);
                 break;
             case "Wizard":
                 System.out.println("Elige el maná de " + charName + ":");
@@ -224,24 +238,27 @@ public class Main {
                 scanner.nextLine();
                 System.out.println("Elige la inteligencia de " + charName + ":");
                 charIntelligence = scanner.nextInt();
-
-                // AQUÍ LLAMARÍAMOS AL CONSTRUCTOR CON ESTOS PARÁMETROS
-                System.out.println("Tu personaje es:");
-                System.out.println("Tipo: " + charType);
-                System.out.println("Nombre: " + charName);
-                System.out.println("Vida: " + charHP);
-                System.out.println("Maná: " + charMana);
-                System.out.println("Inteligencia: " + charIntelligence + "\n");
-
-
-
+                character = new Wizard(charName,charHP,charMana,charIntelligence);
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + charType);
         }
-        while (partyNumber < 1 || partyNumber > 2){
-            System.out.println("Elige en qué equipo quieres que participe (1 ó 2)");
-            partyNumber = scanner.nextInt();
-            scanner.nextLine();
+        switch (partyNumber){
+            case 1:
+                if (party1 == null) {
+                    party1 = new Party();
+                }
+                party1.addCharacter(character);
+                break;
+            case 2:
+                if (party2 == null) {
+                    party2 = new Party();
+                }
+                party2.addCharacter(character);
+                break;                
         }
+        System.out.println(charName + " ha sido creado e incluído en el equipo " + partyNumber + ". Pulsa intro para continuar.");
+        scanner.nextLine();
         showCreateMenu();
 
 

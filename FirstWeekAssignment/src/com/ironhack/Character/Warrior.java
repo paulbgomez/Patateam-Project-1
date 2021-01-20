@@ -97,4 +97,13 @@ public class Warrior extends Character /*implements Attacker*/{
         return new Warrior(id, name, hp, stamina, strength);
     }
 
+    @Override
+    public String toString() {
+        return "Warrior{" +
+                "Name=" + this.getName() +
+                ", Health Points=" + this.getHp() +
+                ", Stamina=" + stamina +
+                ", Strength=" + strength +
+                '}';
+    }
 }
