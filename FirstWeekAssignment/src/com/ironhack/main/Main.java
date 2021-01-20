@@ -1,7 +1,9 @@
 package com.ironhack.main;
 
-import java.sql.SQLOutput;
+import java.util.Random;
 import java.util.Scanner;
+
+import static com.ironhack.main.Party.*;
 
 public class Main {
 
@@ -33,8 +35,7 @@ public class Main {
                 break;
             case 2:
                 // llamar al método pertinente
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
-                showMainMenu();
+
                 break;
             case 3:
                 // llamar al método pertinente
@@ -66,10 +67,8 @@ public class Main {
         System.out.println("============ Patapasillo war ============");
         System.out.println("            Crear personajes\n");
         System.out.println("1- Crear personaje manualmente");
-        System.out.println("2- Mostrar un personaje creado");
-        System.out.println("3- Mostrar equipos");
-        System.out.println("4- Mover un personaje creado de un equipo a otro");
-        System.out.println("5- Atrás\n");
+        System.out.println("2- Mostrar equipos");
+        System.out.println("3- Atrás\n");
 
         while (option < 1 || option > 5){
             System.out.println("Elige una opción válida con el teclado");
@@ -156,7 +155,7 @@ public class Main {
                 System.out.println("Nombre: " + charName);
                 System.out.println("Vida: " + charHP);
                 System.out.println("Maná: " + charMana);
-                System.out.println("Fuerza: " + charIntelligence + "\n");
+                System.out.println("Inteligencia: " + charIntelligence + "\n");
 
 
 

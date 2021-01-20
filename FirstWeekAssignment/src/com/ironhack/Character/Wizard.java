@@ -86,7 +86,7 @@ public class Wizard extends Character /*implements Attacker */{
         return CHARACTER_WIZARD;
     }
 
-    public Wizard createRandomCharacter() {
+    public static Wizard createRandomCharacter() {
 
         int id = Character.generateId();
 

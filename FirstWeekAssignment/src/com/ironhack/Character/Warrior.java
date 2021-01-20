@@ -84,7 +84,7 @@ public class Warrior extends Character /*implements Attacker*/{
         return CHARACTER_WARRIOR;
     }
 
-    public Warrior createRandomCharacter() {
+    public static Warrior createRandomCharacter() {
         int id = Character.generateId();
 
         Random random = new Random();

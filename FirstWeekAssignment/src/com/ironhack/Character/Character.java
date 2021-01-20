@@ -126,9 +126,9 @@ public abstract class Character implements Attacker {
     public abstract int getSecondParameter();
     public abstract String getCharacterType();
 
-    public abstract Character createRandomCharacter();
+//    public abstract static Character createRandomCharacter();
 
-    protected String getRandomName() {
+    protected static String getRandomName() {
         Random random = new Random();
         return CHARACTER_NAMES[random.nextInt(CHARACTER_NAMES.length)];
     }

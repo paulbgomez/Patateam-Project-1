@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+import static com.ironhack.Character.Character.SUFFIX;
+
 
 public class Party {
 //    private static List<Object> partyTeam1 = new ArrayList<>();
@@ -34,6 +36,26 @@ public class Party {
         characterList = new ArrayList<>();
     }
 
+    public Party(int size){
+        this();
+        Random random = new Random();
+        List<String> nameList = new ArrayList<>();
+        for(int i=0; i<size; i++){
+            Character character;
+            if (random.nextBoolean()){
+                character = Warrior.createRandomCharacter();
+            } else {
+                character = Wizard.createRandomCharacter();
+            }
+            if (nameList.contains(character.getName())){
+                nameList.add(character.getName()+SUFFIX);
+                character.setName(character.getName()+SUFFIX);
+            } else {
+                nameList.add(character.getName());
+            }
+            addCharacter(character);
+        }
+    }
     // Constructor con arraylist de miembros
 
     // static crear party desde el menú. Checkear si se puede añadir tanto warrior como wizard
