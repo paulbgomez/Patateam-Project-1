@@ -23,7 +23,12 @@ public class Graveyard {
         } else {
             String graveyardDeaths = "The Graveyard is filled with the souls of \n";
             for (int i = 0; i < getGraveyardList().size(); i++) {
-                graveyardDeaths += getGraveyardList().get(i).getName() + ", a brave " + getGraveyardList().get(i).getCharacterType();
+                graveyardDeaths += getGraveyardList().get(i).getName() + ", a brave " + getGraveyardList().get(i).getCharacterType()
+                + "            ,-=-.       ______      _\n" +
+                        "     /  +  \\    />----->   _|1|_\n" +
+                        "     | ~~~ |    // -/- /   |_ H _|\n" +
+                        "     |R.I.P|   //  /  /      |S|\n" +
+                        "\\vV,,|_____|V,//_____/VvV,v,|_|/,,vhjwv/,";
             }
             return graveyardDeaths;
         }
