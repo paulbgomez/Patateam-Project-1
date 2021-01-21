@@ -15,7 +15,7 @@ public abstract class Character implements Attacker {
             "Enior","Uzirnas","Manoran","Anitarish","Iqill","Odesorin","Udegreth","Sheveus","Usiprix","Uzelyn",
             "Raharad","Ozahl","Troronin","Erune","Kribin","Irodalf","Oxium","Irhan","Iveprix","Oligast",
             "Gwen LightBolt", "Harald Ulmer", "Mordecai el Nigromante", "Kendra la Trituradora", "Tentáculo Púrpura",
-            "Minerva Garra de Cuervo", "Feanwyn SlashHammer", "El Barón Rojo", "Lorelei Susurramentes",
+            "Minerva Garra de Cuervo", "Feanwyn SlashHammer", "El Barón Rojo", "Lorelei Susurramentes", "LeChuck",
             "Hittokiri Battousai", "Hanzo Hasashi", "Lord Gilmoure", "Riddles", "Magnus de la Tormenta",
             "Circe ShapeShifter", "Sir Isaac Manzana Pesada", "Altaïr Mirada Certera", "Úrsula de los ocho brazos",
             "Tycho Visión Penetrante", "Deckard Caín", "Mara la de la Vara", "Malfurion Tempestira",

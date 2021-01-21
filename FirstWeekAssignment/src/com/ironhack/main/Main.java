@@ -68,9 +68,7 @@ public class Main {
                 showMainMenu();
                 break;
             case 7:
-                BattleSimulator bs = new BattleSimulator(party1, party2, battleSimulator.getGraveyard());
-                bs.fullBattle();
-                showMainMenu();
+                showWarMenu();
                 break;
         }
     }
@@ -204,7 +202,36 @@ public class Main {
         scanOption.nextLine();
         showExportMenu();
     }
+    public static void showWarMenu() throws IOException {
+        Scanner scanOption = new Scanner(System.in);
+        int option = 0;
 
+        System.out.println("============ Patapasillo war ============");
+        System.out.println("               ¡Batalla!\n");
+        System.out.println("1- Elegir combatientes a mano");
+        System.out.println("2- Batalla completa automática");
+        System.out.println("3- Atrás\n");
+
+        while (option < 1 || option > 3) {
+            System.out.println("Elige una opción válida con el teclado");
+            option = scanOption.nextInt();
+            scanOption.nextLine();
+        }
+        switch (option) {
+            case 1:
+                System.out.println("Todavía no implementado.");
+                showWarMenu();
+                break;
+            case 2:
+                BattleSimulator bs = new BattleSimulator(party1, party2, battleSimulator.getGraveyard());
+                bs.fullBattle();
+                showMainMenu();
+                break;
+            case 3:
+                showMainMenu();
+                break;
+        }
+    }
     public static void inputDataForCharacters(int partyNumber) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean whileBreaker = false;
