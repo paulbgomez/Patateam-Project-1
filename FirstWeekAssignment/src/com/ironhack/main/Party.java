@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.ironhack.Character.Character.SUFFIX;
 
@@ -17,7 +18,6 @@ public class Party {
 
     private final List<Character> characterList;
 
-    //Constructor vacío
     public Party() {
         characterList = new ArrayList<>();
     }
@@ -49,19 +49,17 @@ public class Party {
         characterList.add(character);
     }
 
-    private void removeCharacter(Character character) {
+    public void removeCharacter(Character character) {
         characterList.remove(character);
     }
 
-    private Character selectCharacter(int index) {
-        Character character = characterList.get(index);
-        removeCharacter(character);
-        return character;
+    public Character getCharacter(int index) {
+        return characterList.get(index);
     }
 
-    public Character selectCharacter() {
+    public Character getCharacter() {
         Random random = new Random();
-        return selectCharacter(random.nextInt(characterList.size()));
+        return getCharacter(random.nextInt(characterList.size()));
     }
 
     public Character selectCharacterByID(int id) {
@@ -98,14 +96,17 @@ public class Party {
 
     @Override
     public String toString() {
+        return "\n" + characterList.stream()
+                .map(Character::showCharacter)
+                .collect(Collectors.joining("\n"));
 
-        String charactersPerLine="\n";
-
-        for (Character character : characterList){
-            charactersPerLine += character.showCharacter() + "\n";
-        }
-
-        return charactersPerLine;
+//        String charactersPerLine="\n";
+//
+//        for (Character character : characterList){
+//            charactersPerLine += character.showCharacter() + "\n";
+//        }
+//
+//        return charactersPerLine;
     }
 }
 

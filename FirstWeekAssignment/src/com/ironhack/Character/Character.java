@@ -27,7 +27,7 @@ public abstract class Character implements Attacker {
             "Pirata Feo", "Olwen de las Nieves", "Finn", "Jake", "Amaterasu", "Atreus", "Sybil Snake",
             "Kaylee la Luciérnaga", "Rubik RompeCabezas", "Elentari", "Gweon Barba Cana", "Tarian StormShield",
             "Kyla Lanzaveloz", "Zelda", "Roy Mustang", "Wulfric el Pecas", "Lady Vulture", "Ragnar Lothbrook",
-            "Esteban Trabajos, fundador de la Manzana", "Guillermo Puertas, fundador de la Ventana"
+            "Esteban Trabajos, fundador de la Manzana", "Guillermo Puertas, fundador de la Ventana", "Patata"
     };
     public static final String SUFFIX = " Jr.";
 
@@ -52,6 +52,9 @@ public abstract class Character implements Attacker {
     }
 
     // Methods --------------------------
+
+
+    public abstract void attack(Character character);
 
     // Update Hp --> Falta llamar al metodo sendtograveyard??
     public void decreaseHp (int attackValue) {
@@ -102,7 +105,6 @@ public abstract class Character implements Attacker {
         this.isAlive = alive;
     }
 
-    public abstract void attack(Character character);
 
     public String toCSV() {
 
@@ -138,14 +140,11 @@ public abstract class Character implements Attacker {
         int firstParameter = Integer.parseInt(values[4]);
         int secondParameter = Integer.parseInt(values[5]);
 
-        switch (characterType) {
-            case CHARACTER_WARRIOR:
-                return new Warrior(id, name, hp, firstParameter, secondParameter);
-            case CHARACTER_WIZARD:
-                return new Wizard(id, name, hp, firstParameter, secondParameter);
-            default:
-                return null;
-        }
+        return switch (characterType) {
+            case CHARACTER_WARRIOR -> new Warrior(id, name, hp, firstParameter, secondParameter);
+            case CHARACTER_WIZARD -> new Wizard(id, name, hp, firstParameter, secondParameter);
+            default -> null;
+        };
     }
 
     public abstract int getFirstParameter();

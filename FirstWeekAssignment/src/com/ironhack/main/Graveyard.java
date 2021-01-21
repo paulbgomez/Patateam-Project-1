@@ -47,8 +47,9 @@ public class Graveyard {
                 graveyardDeaths += getGraveyardList().get(i).getName() + ", a brave " + getGraveyardList().get(i).getCharacterType()
                 + "\n";
             }
-            graveyardDeaths += "      ,-=-.       ______      _\n" +
-                    "     /  +  \\    />----->   _|1|_\n" +
+            graveyardDeaths +=
+                    "      ,-=-.     ______      _\n" +
+                    "     /  +  \\     />----->  _|1|_\n" +
                     "     | ~~~ |    // -/- /  |_ H _|\n" +
                     "     |R.I.P|   //  /  /     |S|\n" +
                     "\\vV,,|_____|V,//_____/VvV,v,|_|/,,vhjwv/,";
