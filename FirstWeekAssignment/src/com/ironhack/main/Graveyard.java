@@ -45,12 +45,13 @@ public class Graveyard {
             String graveyardDeaths = "The Graveyard is filled with the souls of \n";
             for (int i = 0; i < getGraveyardList().size(); i++) {
                 graveyardDeaths += getGraveyardList().get(i).getName() + ", a brave " + getGraveyardList().get(i).getCharacterType()
-                + "\n"  + "    ,-=-.       ______      _\n" +
-                        "     /  +  \\    />----->   _|1|_\n" +
-                        "     | ~~~ |    // -/- /  |_ H _|\n" +
-                        "     |R.I.P|   //  /  /     |S|\n" +
-                        "\\vV,,|_____|V,//_____/VvV,v,|_|/,,vhjwv/,";
+                + "\n";
             }
+            graveyardDeaths += "      ,-=-.       ______      _\n" +
+                    "     /  +  \\    />----->   _|1|_\n" +
+                    "     | ~~~ |    // -/- /  |_ H _|\n" +
+                    "     |R.I.P|   //  /  /     |S|\n" +
+                    "\\vV,,|_____|V,//_____/VvV,v,|_|/,,vhjwv/,";
             return graveyardDeaths;
         }
     }
