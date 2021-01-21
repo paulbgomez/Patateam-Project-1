@@ -92,7 +92,6 @@ public class Warrior extends Character /*implements Attacker*/{
     }
 
     public static Warrior createRandomCharacter() {
-        int id = Character.generateId();
 
         Random random = new Random();
 
@@ -101,7 +100,7 @@ public class Warrior extends Character /*implements Attacker*/{
         int hp = random.nextInt(WARRIOR_HP_MAX - WARRIOR_HP_MIN + 1) + WARRIOR_HP_MIN;
         int stamina = random.nextInt(WARRIOR_STAMINA_MAX - WARRIOR_STAMINA_MIN + 1) + WARRIOR_STAMINA_MIN;
         int strength = random.nextInt(WARRIOR_STRENGTH_MAX - WARRIOR_STRENGTH_MIN + 1) + WARRIOR_STRENGTH_MIN;
-        return new Warrior(id, name, hp, stamina, strength);
+        return new Warrior(name, hp, stamina, strength);
     }
 
     @Override

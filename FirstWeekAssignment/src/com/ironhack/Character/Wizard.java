@@ -95,8 +95,6 @@ public class Wizard extends Character /*implements Attacker */{
 
     public static Wizard createRandomCharacter() {
 
-        int id = Character.generateId();
-
         Random random = new Random();
 
         String name = getRandomName();
@@ -106,7 +104,7 @@ public class Wizard extends Character /*implements Attacker */{
         int mana = random.nextInt(WIZARD_MANA_MAX - WIZARD_MANA_MIN + 1) + WIZARD_MANA_MIN;
         int intelligence = random.nextInt(WIZARD_INTELLIGENCE_MAX - WIZARD_INTELLIGENCE_MIN + 1) + WIZARD_INTELLIGENCE_MIN;
 
-        return new Wizard(id, name, hp, mana, intelligence);
+        return new Wizard(name, hp, mana, intelligence);
     }
 
     @Override
