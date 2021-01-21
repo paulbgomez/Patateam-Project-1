@@ -76,8 +76,15 @@ public class Warrior extends Character /*implements Attacker*/{
         return getStamina();
     }
 
+    public String getFirstParameterName() {
+        return "Resistencia";
+    }
+
     public int getSecondParameter() {
         return getStrength();
+    }
+    public String getSecondParameterName() {
+        return "Fuerza";
     }
 
     public String getCharacterType() {

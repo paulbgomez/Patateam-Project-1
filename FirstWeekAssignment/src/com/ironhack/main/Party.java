@@ -98,9 +98,14 @@ public class Party {
 
     @Override
     public String toString() {
-        return "{" +
-                "List of characters =" + characterList +
-                '}';
+
+        String charactersPerLine="\n";
+
+        for (Character character : characterList){
+            charactersPerLine += character.showCharacter() + "\n";
+        }
+
+        return charactersPerLine;
     }
 }
 

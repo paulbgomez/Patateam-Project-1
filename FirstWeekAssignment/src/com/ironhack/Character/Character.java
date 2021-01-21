@@ -116,6 +116,18 @@ public abstract class Character implements Attacker {
 
         return csvString;
     }
+    public String showCharacter() {
+
+        String characterAttributesListed =
+                "ID-" + getId() +
+                        " Tipo: " + getCharacterType()
+                        + " | Nombre: " + getName() +
+                        " | Vida: " + getHp() +
+                        " | " + getFirstParameterName() + ": " + getFirstParameter() +
+                        " | " + getSecondParameterName() + ": " + getSecondParameter();
+
+        return characterAttributesListed;
+    }
 
     public static Character fromCSV(String csvString) {
         String[] values = csvString.split(", ");
@@ -137,7 +149,9 @@ public abstract class Character implements Attacker {
     }
 
     public abstract int getFirstParameter();
+    public abstract String getFirstParameterName();
     public abstract int getSecondParameter();
+    public abstract String getSecondParameterName();
     public abstract String getCharacterType();
 
 //    public abstract static Character createRandomCharacter();

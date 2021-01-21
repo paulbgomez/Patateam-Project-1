@@ -78,8 +78,15 @@ public class Wizard extends Character /*implements Attacker */{
         return getMana();
     }
 
+    public String getFirstParameterName() {
+        return "Maná";
+    }
+
     public int getSecondParameter() {
         return getIntelligence();
+    }
+    public String getSecondParameterName() {
+        return "Inteligencia";
     }
 
     public String getCharacterType() {
