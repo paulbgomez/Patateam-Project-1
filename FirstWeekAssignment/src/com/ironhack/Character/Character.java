@@ -27,7 +27,8 @@ public abstract class Character implements Attacker {
             "Pirata Feo", "Olwen de las Nieves", "Finn", "Jake", "Amaterasu", "Atreus", "Sybil Snake",
             "Kaylee la Luciérnaga", "Rubik RompeCabezas", "Elentari", "Gweon Barba Cana", "Tarian StormShield",
             "Kyla Lanzaveloz", "Zelda", "Roy Mustang", "Wulfric el Pecas", "Lady Vulture", "Ragnar Lothbrook",
-            "Esteban Trabajos, fundador de la Manzana", "Guillermo Puertas, fundador de la Ventana", "Patata"
+            "Esteban Trabajos fundador de la Manzana", "Guillermo Puertas fundador de la Ventana", "Patata",
+            "Fray Perico", "Calcetín", "El guerrillero Martín", "El Pirata Garrapata"
     };
     public static final String SUFFIX = " Jr.";
 

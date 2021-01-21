@@ -24,8 +24,14 @@ public class Party {
 
     public Party(int size){
         this();
+        addRandomCharacters(size);
+    }
+
+    public void addRandomCharacters(int size) {
         Random random = new Random();
-        List<String> nameList = new ArrayList<>();
+        List<String> nameList = characterList.stream()
+                .map(Character::getName)
+                .collect(Collectors.toList());
         for(int i=0; i<size; i++){
             Character character;
             if (random.nextBoolean()){
@@ -39,6 +45,7 @@ public class Party {
             nameList.add(character.getName());
             addCharacter(character);
         }
+
     }
 
     public boolean hasCharacters() {
@@ -99,14 +106,6 @@ public class Party {
         return "\n" + characterList.stream()
                 .map(Character::showCharacter)
                 .collect(Collectors.joining("\n"));
-
-//        String charactersPerLine="\n";
-//
-//        for (Character character : characterList){
-//            charactersPerLine += character.showCharacter() + "\n";
-//        }
-//
-//        return charactersPerLine;
     }
 }
 

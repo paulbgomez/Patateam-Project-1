@@ -7,10 +7,26 @@ public class BattleSimulator {
     private Party party2;
     private final Graveyard graveyard;
 
-    public BattleSimulator(Party party1, Party party2) {
+    public BattleSimulator() {
+        this(new Graveyard());
+    }
+
+    public BattleSimulator(Party party1, Party party2, Graveyard graveyard) {
         this.party1 = party1;
         this.party2 = party2;
-        graveyard = new Graveyard();
+        this.graveyard = graveyard;
+    }
+
+    public BattleSimulator(Graveyard graveyard) {
+        this.graveyard = graveyard;
+        party1 = new Party();
+        party2 = new Party();
+    }
+
+    public BattleSimulator(Party party1, Party party2) {
+        this();
+        this.party1 = party1;
+        this.party2 = party2;
     }
 
     public void fullBattle(){
@@ -20,12 +36,14 @@ public class BattleSimulator {
     }
 
     public void duel(Character character1, Character character2){
+        System.out.println();
+        System.out.println("Duelo entre " + character1.getName() + " y " + character2.getName());
         while (character1.getIsAlive() && character2.getIsAlive()){
             character1.attack(character2);
             character2.attack(character1);
         }
-        burryTheDead(character1);
-        burryTheDead(character2);
+        burryTheDead(party1, character1);
+        burryTheDead(party2, character2);
     }
 
     public void duel(int index1, int index2){
@@ -38,10 +56,11 @@ public class BattleSimulator {
                 party2.getCharacter());
     }
 
-    private void burryTheDead(Character character) {
+    private void burryTheDead(Party party, Character character) {
         if (!character.getIsAlive()) {
+            System.out.println(character.getName() + " ha muerto y va a ser enterrado");
             graveyard.addCharacterToGraveyard(character);
-            party1.removeCharacter(character);
+            party.removeCharacter(character);
         }
     }
 

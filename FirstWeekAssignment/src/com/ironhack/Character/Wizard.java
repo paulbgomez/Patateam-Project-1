@@ -1,10 +1,5 @@
 package com.ironhack.Character;
 
-import com.ironhack.Interface.Attacker;
-import com.ironhack.Character.Character;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Wizard extends Character /*implements Attacker */{
@@ -43,7 +38,7 @@ public class Wizard extends Character /*implements Attacker */{
         if (getMana() >= 5) {
             attackValue = intelligence;
             updateMana(getMana()-5);
-            System.out.println(getName() + " chamusca a su oponente y le quita" + attackValue + "puntos de vida");
+            System.out.println(getName() + " chamusca a su oponente y le quita " + attackValue + " puntos de vida");
         } else {
             attackValue = 2;
             updateMana(getMana()+1);

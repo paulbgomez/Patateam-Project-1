@@ -8,10 +8,9 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
-import static com.ironhack.main.Party.*;
 
 public class Main {
-    static Graveyard graveyard = new Graveyard();
+    static BattleSimulator battleSimulator = new BattleSimulator();
     static Party party1;
     static Party party2;
 
@@ -65,12 +64,12 @@ public class Main {
                 showMainMenu();
                 break;
             case 6:
-                System.out.println(graveyard);
+                System.out.println(battleSimulator.getGraveyard());
                 showMainMenu();
                 break;
             case 7:
-                // llamar al método pertinente
-                System.out.println("Todavía no implementado");  // Esta línea y la siguiente se borrarán cuando tengamos el método al que llamar.
+                BattleSimulator bs = new BattleSimulator(party1, party2, battleSimulator.getGraveyard());
+                bs.fullBattle();
                 showMainMenu();
                 break;
         }
