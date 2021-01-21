@@ -182,17 +182,26 @@ public class Main {
         }
         switch (option){
             case 1:
-                party1.exportCSV();
+                if (party1 != null) {
+                    party1.exportCSV();
+                    System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
+                } else {
+                    System.out.println("El equipo " + option + " aún está vacío. No se puede exportar. Pulsa intro para continuar.");
+                }
                 break;
             case 2:
-                party2.exportCSV();
+                if (party2 != null) {
+                    party2.exportCSV();
+                    System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
+                } else {
+                    System.out.println("El equipo " + option + " aún está vacío. No se puede exportar. Pulsa intro para continuar.");
+                }
                 break;
             case 3:
                 showMainMenu();
                 break;
 
         }
-        System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
         scanOption.nextLine();
         showExportMenu();
     }
