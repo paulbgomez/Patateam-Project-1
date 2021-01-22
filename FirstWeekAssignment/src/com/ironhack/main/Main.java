@@ -15,13 +15,60 @@ public class Main {
     static Party party2;
 
     public static void main(String[] args) throws IOException {
-        showMainMenu();
+        mainMenu();
     }
 
-    public static void showMainMenu() throws IOException {
+    public static void mainMenu() throws IOException {
         Scanner scanOption = new Scanner(System.in);
-        int option=0;
 
+        printMainMenuOptions();
+        String option = scanOption.nextLine();
+
+        while (!option.equals("8")) {
+            switch (option){
+                case "1":
+                    createMenu();
+                    break;
+                case "2":
+                    randomMenu();
+                    break;
+                case "3":
+                    importMenu();
+                    break;
+                case "4":
+                    exportMenu();
+                    break;
+                case "5":
+                    if (party1 == null){
+                        System.out.println("Equipo 1 aún vacío");
+                    } else {
+                        System.out.println("Equipo 1: " + party1);
+                    }
+                    if (party2 == null){
+                        System.out.println("Equipo 2 aún vacío");
+                    } else {
+                        System.out.println("Equipo 2: " + party2);
+                    }
+                    break;
+                case "6":
+                    System.out.println(battleSimulator.getGraveyard());
+                    break;
+                case "7":
+                    warMenu();
+                    break;
+                case "1729":
+                    System.out.println("Feliz viaje en taxi!!!");
+                    break;
+                default:
+                    System.out.println("Elige una opción válida con el teclado:");
+            }
+
+            printMainMenuOptions();
+            option = scanOption.nextLine();
+        }
+    }
+
+    private static void printMainMenuOptions() {
         System.out.println("============ Patapasillo war ============\n");
         System.out.println("1- Crear personajes y equipos manualmente");
         System.out.println("2- Crear equipos enteros aleatoriamente");
@@ -29,219 +76,195 @@ public class Main {
         System.out.println("4- Exportar equipo existente a un archivo .csv");
         System.out.println("5- Mostrar equipos si ya existen");
         System.out.println("6- Ver personajes muertos");
-        System.out.println("7- ¡Guerra entre los equipos!\n");
+        System.out.println("7- ¡Guerra entre los equipos!");
+        System.out.println("8- Mandar esto a tomar por culo :)\n");
+    }
 
-        while (option < 1 || option > 8){
-            System.out.println("Elige una opción válida con el teclado:");
-            option = scanOption.nextInt();
-            scanOption.nextLine();
-        }
+    public static void createMenu() {
+        Scanner scanOption = new Scanner(System.in);
 
-        switch (option){
-            case 1:
-                showCreateMenu();
-                break;
-            case 2:
-                showRandomMenu();
-                break;
-            case 3:
-                showImportMenu();
-                break;
-            case 4:
-                showExportMenu();
-                break;
-            case 5:
-                if (party1 == null){
-                    System.out.println("Equipo 1 aún vacío");
-                } else {
-                    System.out.println("Equipo 1: " + party1);
-                }
-                if (party2 == null){
-                    System.out.println("Equipo 2 aún vacío");
-                } else {
-                    System.out.println("Equipo 2: " + party2);
-                }
-                showMainMenu();
-                break;
-            case 6:
-                System.out.println(battleSimulator.getGraveyard());
-                showMainMenu();
-                break;
-            case 7:
-                showWarMenu();
-                break;
+        printCreateMenuOptions();
+        String option = scanOption.nextLine();
+
+        while (option.equals("1") || option.equals("2")){
+            inputDataForCharacters(Integer.parseInt(option));
+            printCreateMenuOptions();
+            option = scanOption.nextLine();
         }
     }
 
-    public static void showCreateMenu() throws IOException {
-        Scanner scanOption = new Scanner(System.in);
-        int option=0;
-
+    private static void printCreateMenuOptions() {
         System.out.println("============ Patapasillo war ============");
         System.out.println("            Crear personajes\n");
         System.out.println("1- Crear personaje para el equipo 1");
         System.out.println("2- Crear personaje para el equipo 2");
         System.out.println("3- Atrás\n");
-
-        while (option < 1 || option > 3){
-            System.out.println("Elige una opción válida con el teclado");
-            option = scanOption.nextInt();
-            scanOption.nextLine();
-        }
-        switch (option){
-            case 3:
-                showMainMenu();
-                break;
-            default:
-                inputDataForCharacters(option);
-                break;
-        }
     }
-    public static void showRandomMenu() throws IOException {
-        Scanner scanOption = new Scanner(System.in);
-        int option=0;
-        Random random = new Random();
-        int numeroRandom = random.nextInt(15)+1;
 
+    public static void randomMenu(){
+        Scanner scanOption = new Scanner(System.in);
+        Random random = new Random();
+        int numeroRandom;
+
+        printRandomMenuOptions();
+        String option = scanOption.nextLine();
+
+        while (!option.equals("3")){
+
+            switch (option){
+                case "1":
+                    numeroRandom = random.nextInt(15) + 1;
+                    party1 = new Party(numeroRandom);
+                    System.out.println("El equipo " + option + " ha sido generado con " + numeroRandom + " miembros.");
+                    break;
+                case "2":
+                    numeroRandom = random.nextInt(15) + 1;
+                    party2 = new Party(numeroRandom);
+                    System.out.println("El equipo " + option + " ha sido generado con " + numeroRandom + " miembros.");
+                    break;
+                default:
+                    System.out.println("Elige una opción válida con el teclado");
+            }
+
+            printRandomMenuOptions();
+            option = scanOption.nextLine();
+        }
+
+    }
+
+    private static void printRandomMenuOptions() {
         System.out.println("============ Patapasillo war ============");
         System.out.println("       Generar equipo aleatorio\n");
         System.out.println("1- Generar equipo 1");
         System.out.println("2- Generar equipo 2");
         System.out.println("3- Atrás\n");
-
-        while (option < 1 || option > 3){
-            System.out.println("Elige una opción válida con el teclado");
-            option = scanOption.nextInt();
-            scanOption.nextLine();
-        }
-        switch (option){
-            case 1:
-                party1 = new Party(numeroRandom);
-                break;
-            case 2:
-                party2 = new Party(numeroRandom);
-                break;
-            case 3:
-                showMainMenu();
-                break;
-        }
-        System.out.println("El equipo " + option + " ha sido generado con " + numeroRandom + " miembros. Pulsa intro para continuar.");
-        scanOption.nextLine();
-        showRandomMenu();
-
     }
-    public static void showImportMenu() throws IOException {
-        Scanner scanOption = new Scanner(System.in);
-        int option=0;
 
+    public static void importMenu() throws IOException {
+        Scanner scanOption = new Scanner(System.in);
+
+        printImportMenuOptions();
+        String option = scanOption.nextLine();
+
+        while (!option.equals("3")){
+            switch (option){
+                case "1":
+                    party1 = new Party();
+                    party1.importCSV();
+                    System.out.println("El equipo " + option + " ha sido importado desde el archivo .csv.");
+                    break;
+                case "2":
+                    party2 = new Party();
+                    party2.importCSV();
+                    System.out.println("El equipo " + option + " ha sido importado desde el archivo .csv.");
+                    break;
+                default:
+                    System.out.println("Elige una opción válida con el teclado");
+            }
+            printImportMenuOptions();
+            option = scanOption.nextLine();
+        }
+    }
+
+    private static void printImportMenuOptions() {
         System.out.println("============ Patapasillo war ============");
         System.out.println("            Importar equipos\n");
         System.out.println("1- Importar equipo 1");
         System.out.println("2- Importar equipo 2");
         System.out.println("3- Atrás\n");
-
-        while (option < 1 || option > 3){
-            System.out.println("Elige una opción válida con el teclado");
-            option = scanOption.nextInt();
-            scanOption.nextLine();
-        }
-        switch (option){
-            case 1:
-                party1 = new Party();
-                party1.importCSV();
-                break;
-            case 2:
-                party2 = new Party();
-                party2.importCSV();
-                break;
-            case 3:
-                showMainMenu();
-                break;
-        }
-        System.out.println("El equipo " + option + " ha sido importado desde el archivo .csv. Pulsa intro para continuar.");
-        scanOption.nextLine();
-        showImportMenu();
     }
-    public static void showExportMenu() throws IOException {
-        Scanner scanOption = new Scanner(System.in);
-        int option=0;
 
+    public static void exportMenu() throws IOException {
+        Scanner scanOption = new Scanner(System.in);
+
+        printExportMenuOptions();
+        String option = scanOption.nextLine();
+
+        while (!option.equals("3")){
+
+            switch (option) {
+                case "1":
+                    if (party1 != null) {
+                        party1.exportCSV();
+                        System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
+                    } else {
+                        System.out.println("El equipo " + option + " aún está vacío. No se puede exportar. Pulsa intro para continuar.");
+                    }
+                    break;
+                case "2":
+                    if (party2 != null) {
+                        party2.exportCSV();
+                        System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
+                    } else {
+                        System.out.println("El equipo " + option + " aún está vacío. No se puede exportar. Pulsa intro para continuar.");
+                    }
+                    break;
+                default:
+                    System.out.println("Elige una opción válida con el teclado");
+            }
+
+            printExportMenuOptions();
+            option = scanOption.nextLine();
+        }
+    }
+
+    private static void printExportMenuOptions() {
         System.out.println("============ Patapasillo war ============");
         System.out.println("            Exportar equipos\n");
         System.out.println("1- Exportar equipo 1");
         System.out.println("2- Exportar equipo 2");
         System.out.println("3- Atrás\n");
-
-        while (option < 1 || option > 3){
-            System.out.println("Elige una opción válida con el teclado");
-            option = scanOption.nextInt();
-            scanOption.nextLine();
-        }
-        switch (option){
-            case 1:
-                if (party1 != null) {
-                    party1.exportCSV();
-                    System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
-                } else {
-                    System.out.println("El equipo " + option + " aún está vacío. No se puede exportar. Pulsa intro para continuar.");
-                }
-                break;
-            case 2:
-                if (party2 != null) {
-                    party2.exportCSV();
-                    System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
-                } else {
-                    System.out.println("El equipo " + option + " aún está vacío. No se puede exportar. Pulsa intro para continuar.");
-                }
-                break;
-            case 3:
-                showMainMenu();
-                break;
-
-        }
-        scanOption.nextLine();
-        showExportMenu();
     }
-    public static void showWarMenu() throws IOException {
-        Scanner scanOption = new Scanner(System.in);
-        int option = 0;
 
+    public static void warMenu() {
+        Scanner scanOption = new Scanner(System.in);
+        battleSimulator = new BattleSimulator(party1, party2, battleSimulator.getGraveyard());
+
+        printWarMenuOptions();
+        String option = scanOption.nextLine();
+
+        while (!option.equals("3")) {
+
+            switch (option) {
+                case "1":
+                    System.out.println("Elegir combatiente del equipo 1 para el duelo");
+                    System.out.println("Número del 0 al " + (party1.getCharacterList().size() - 1));
+                    int index1 = Integer.parseInt(scanOption.nextLine());
+                    System.out.println("Elegir combatiente del equipo 2 para el duelo");
+                    System.out.println("Número del 0 al " + (party2.getCharacterList().size() - 1));
+                    int index2 = Integer.parseInt(scanOption.nextLine());
+                    battleSimulator.duel(index1, index2);
+                    break;
+                case "2":
+                    battleSimulator.fullBattle();
+                    break;
+                default:
+                    System.out.println("Elige una opción válida con el teclado");
+            }
+            printWarMenuOptions();
+            option = scanOption.nextLine();
+        }
+
+    }
+
+    private static void printWarMenuOptions() {
         System.out.println("============ Patapasillo war ============");
         System.out.println("               ¡Batalla!\n");
         System.out.println("1- Elegir combatientes a mano");
         System.out.println("2- Batalla completa automática");
         System.out.println("3- Atrás\n");
-
-        while (option < 1 || option > 3) {
-            System.out.println("Elige una opción válida con el teclado");
-            option = scanOption.nextInt();
-            scanOption.nextLine();
-        }
-        switch (option) {
-            case 1:
-                System.out.println("Todavía no implementado.");
-                showWarMenu();
-                break;
-            case 2:
-                BattleSimulator bs = new BattleSimulator(party1, party2, battleSimulator.getGraveyard());
-                bs.fullBattle();
-                showMainMenu();
-                break;
-            case 3:
-                showMainMenu();
-                break;
-        }
     }
-    public static void inputDataForCharacters(int partyNumber) throws IOException {
+
+    public static void inputDataForCharacters(int partyNumber) {
         Scanner scanner = new Scanner(System.in);
         boolean whileBreaker = false;
         String charType = "";
-        String charName = "";
-        int charHP = 0;
-        int charStamina = 0;
-        int charStrength = 0;
-        int charMana = 0;
-        int charIntelligence = 0;
+        String charName;
+        int charHP;
+        int charStamina;
+        int charStrength;
+        int charMana;
+        int charIntelligence;
         Character character;
 
         while (!whileBreaker){
@@ -292,9 +315,7 @@ public class Main {
                 party2.addCharacter(character);
                 break;                
         }
-        System.out.println(charName + " ha sido creado e incluído en el equipo " + partyNumber + ". Pulsa intro para continuar.");
-        scanner.nextLine();
-        showCreateMenu();
+        System.out.println(charName + " ha sido creado e incluído en el equipo " + partyNumber + ".");
 
 
     }
