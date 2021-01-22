@@ -1,7 +1,5 @@
 package com.ironhack.Character;
 
-import com.ironhack.Interface.Attacker;
-
 import java.util.Random;
 
 public class Warrior extends Character /*implements Attacker*/{
@@ -26,12 +24,6 @@ public class Warrior extends Character /*implements Attacker*/{
         setStrength(strength);
     }
 
-    // Constructor para la carga desde CSV
-    public Warrior(int id, String name, int hp, int stamina, int strength) {
-        this(name, hp, stamina, strength);
-        setId(id);
-    }
-
 
     // Methods -----------------------------
 
@@ -41,11 +33,11 @@ public class Warrior extends Character /*implements Attacker*/{
         if (getStamina() >= 5) {
             attackValue = getStrength();
             updateStamina(getStamina()-5);
-            System.out.println(getName() + " mete un hachazo a su oponente y le deja del revés, quitándole " + attackValue +" puntos de vida");
+            System.out.println(getName() + " mete un hachazo a " + character.getName() + " y le deja del revés, quitándole " + attackValue +" puntos de vida");
         } else {
             attackValue = getStrength()/2;
             updateStamina(getStamina()+1);
-            System.out.println(getName() + " le pega un capón a su oponente y le quita " + attackValue + " puntos de vida");
+            System.out.println(getName() + " le pega un capón a " + character.getName() + " y le quita " + attackValue + " puntos de vida");
         }
         character.decreaseHp(attackValue);
     }

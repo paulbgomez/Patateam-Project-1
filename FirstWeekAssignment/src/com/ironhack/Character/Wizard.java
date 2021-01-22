@@ -24,12 +24,6 @@ public class Wizard extends Character /*implements Attacker */{
         setIntelligence(intelligence);
     }
 
-    // Constructor para la carga desde CSV
-    public Wizard(int id, String name, int hp, int mana, int intelligence) {
-        this(name, hp, mana, intelligence);
-        setId(id);
-    }
-
     // Methods ----------------------------
 
     // Attack
@@ -38,11 +32,11 @@ public class Wizard extends Character /*implements Attacker */{
         if (getMana() >= 5) {
             attackValue = intelligence;
             updateMana(getMana()-5);
-            System.out.println(getName() + " chamusca a su oponente y le quita " + attackValue + " puntos de vida");
+            System.out.println(getName() + " chamusca a " + character.getName() + " y le quita " + attackValue + " puntos de vida");
         } else {
             attackValue = 2;
             updateMana(getMana()+1);
-            System.out.println(getName() + " acaricia con su varita a su oponente y le quita " + attackValue + " puntos de vida de la verguenza ajena que da");
+            System.out.println(getName() + " acaricia con su varita a " + character.getName() + " y le quita " + attackValue + " puntos de vida de la verguenza ajena que da");
         }
         character.decreaseHp(attackValue);
     }

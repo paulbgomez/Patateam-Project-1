@@ -23,15 +23,16 @@ public class BattleSimulator {
         party2 = new Party();
     }
 
-    public BattleSimulator(Party party1, Party party2) {
-        this();
-        this.party1 = party1;
-        this.party2 = party2;
-    }
-
     public void fullBattle(){
         while (party1.hasCharacters() && party2.hasCharacters()) {
             duel();
+        }
+        if (party1.hasCharacters()) {
+            System.out.println("\nHA GANADO EL EQUIPO UNO\n");
+        } else if (party2.hasCharacters()) {
+            System.out.println("\nHA GANADO EL EQUIPO DOS\n");
+        } else {
+            System.out.println("\nLos equipos se han asesinado mutuamente, puede visitarles en el cementerio\n");
         }
     }
 

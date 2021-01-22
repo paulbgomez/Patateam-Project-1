@@ -103,7 +103,7 @@ public class Party {
 
     @Override
     public String toString() {
-        return "\n" + characterList.stream()
+        return characterList.stream()
                 .map(Character::showCharacter)
                 .collect(Collectors.joining("\n"));
     }

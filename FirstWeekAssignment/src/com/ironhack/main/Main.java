@@ -10,62 +10,42 @@ import java.util.Scanner;
 
 
 public class Main {
+    static Scanner sc = new Scanner(System.in);
+    // TODO: cambiar esto pa sólo acceder a las partys a partir del battleSimulator
     static BattleSimulator battleSimulator = new BattleSimulator();
-    static Party party1;
-    static Party party2;
+    static Party party1 = new Party();
+    static Party party2 = new Party();
 
+    // TODO: mostrar el número de miembros siempre que sea relevante
     public static void main(String[] args) throws IOException {
         mainMenu();
     }
 
     public static void mainMenu() throws IOException {
-        Scanner scanOption = new Scanner(System.in);
 
         printMainMenuOptions();
-        String option = scanOption.nextLine();
+        String option = sc.nextLine();
 
         while (!option.equals("8")) {
-            switch (option){
-                case "1":
-                    createMenu();
-                    break;
-                case "2":
-                    randomMenu();
-                    break;
-                case "3":
-                    importMenu();
-                    break;
-                case "4":
-                    exportMenu();
-                    break;
-                case "5":
-                    if (party1 == null){
-                        System.out.println("Equipo 1 aún vacío");
-                    } else {
-                        System.out.println("Equipo 1: " + party1);
-                    }
-                    if (party2 == null){
-                        System.out.println("Equipo 2 aún vacío");
-                    } else {
-                        System.out.println("Equipo 2: " + party2);
-                    }
-                    break;
-                case "6":
-                    System.out.println(battleSimulator.getGraveyard());
-                    break;
-                case "7":
-                    warMenu();
-                    break;
-                case "1729":
-                    System.out.println("Feliz viaje en taxi!!!");
-                    break;
-                default:
-                    System.out.println("Elige una opción válida con el teclado:");
+            switch (option) {
+                case "1" -> createMenu();
+                case "2" -> randomMenu();
+                case "3" -> importMenu();
+                case "4" -> exportMenu();
+                case "5" -> printParties();
+                case "6" -> System.out.println(battleSimulator.getGraveyard());
+                case "7" -> warMenu();
+                case "1729" -> System.out.println("Feliz viaje en taxi!!!");
+                default -> System.out.println("Elige una opción válida con el teclado:");
             }
-
             printMainMenuOptions();
-            option = scanOption.nextLine();
+            option = sc.nextLine();
         }
+    }
+
+    private static void printParties() {
+        System.out.println("Equipo 1:\n" + party1);
+        System.out.println("Equipo 2:\n" + party2);
     }
 
     private static void printMainMenuOptions() {
@@ -81,15 +61,13 @@ public class Main {
     }
 
     public static void createMenu() {
-        Scanner scanOption = new Scanner(System.in);
-
         printCreateMenuOptions();
-        String option = scanOption.nextLine();
+        String option = sc.nextLine();
 
         while (option.equals("1") || option.equals("2")){
             inputDataForCharacters(Integer.parseInt(option));
             printCreateMenuOptions();
-            option = scanOption.nextLine();
+            option = sc.nextLine();
         }
     }
 
@@ -102,32 +80,30 @@ public class Main {
     }
 
     public static void randomMenu(){
-        Scanner scanOption = new Scanner(System.in);
         Random random = new Random();
         int numeroRandom;
 
         printRandomMenuOptions();
-        String option = scanOption.nextLine();
+        String option = sc.nextLine();
 
         while (!option.equals("3")){
 
-            switch (option){
-                case "1":
+            switch (option) {
+                case "1" -> {
                     numeroRandom = random.nextInt(15) + 1;
                     party1 = new Party(numeroRandom);
                     System.out.println("El equipo " + option + " ha sido generado con " + numeroRandom + " miembros.");
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     numeroRandom = random.nextInt(15) + 1;
                     party2 = new Party(numeroRandom);
                     System.out.println("El equipo " + option + " ha sido generado con " + numeroRandom + " miembros.");
-                    break;
-                default:
-                    System.out.println("Elige una opción válida con el teclado");
+                }
+                default -> System.out.println("Elige una opción válida con el teclado");
             }
 
             printRandomMenuOptions();
-            option = scanOption.nextLine();
+            option = sc.nextLine();
         }
 
     }
@@ -141,28 +117,26 @@ public class Main {
     }
 
     public static void importMenu() throws IOException {
-        Scanner scanOption = new Scanner(System.in);
 
         printImportMenuOptions();
-        String option = scanOption.nextLine();
+        String option = sc.nextLine();
 
         while (!option.equals("3")){
-            switch (option){
-                case "1":
+            switch (option) {
+                case "1" -> {
                     party1 = new Party();
                     party1.importCSV();
                     System.out.println("El equipo " + option + " ha sido importado desde el archivo .csv.");
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     party2 = new Party();
                     party2.importCSV();
                     System.out.println("El equipo " + option + " ha sido importado desde el archivo .csv.");
-                    break;
-                default:
-                    System.out.println("Elige una opción válida con el teclado");
+                }
+                default -> System.out.println("Elige una opción válida con el teclado");
             }
             printImportMenuOptions();
-            option = scanOption.nextLine();
+            option = sc.nextLine();
         }
     }
 
@@ -174,37 +148,28 @@ public class Main {
         System.out.println("3- Atrás\n");
     }
 
+    // TODO: decidir si una party vacía se puede exportar y poner if si no
     public static void exportMenu() throws IOException {
-        Scanner scanOption = new Scanner(System.in);
 
         printExportMenuOptions();
-        String option = scanOption.nextLine();
+        String option = sc.nextLine();
 
         while (!option.equals("3")){
 
             switch (option) {
-                case "1":
-                    if (party1 != null) {
-                        party1.exportCSV();
-                        System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
-                    } else {
-                        System.out.println("El equipo " + option + " aún está vacío. No se puede exportar. Pulsa intro para continuar.");
-                    }
-                    break;
-                case "2":
-                    if (party2 != null) {
-                        party2.exportCSV();
-                        System.out.println("El equipo " + option + " ha sido exportado al archivo .csv. Pulsa intro para continuar.");
-                    } else {
-                        System.out.println("El equipo " + option + " aún está vacío. No se puede exportar. Pulsa intro para continuar.");
-                    }
-                    break;
-                default:
-                    System.out.println("Elige una opción válida con el teclado");
+                case "1" -> {
+                    party1.exportCSV();
+                    System.out.println("El equipo " + option + " ha sido exportado al archivo .csv.");
+                }
+                case "2" -> {
+                    party2.exportCSV();
+                    System.out.println("El equipo " + option + " ha sido exportado al archivo .csv.");
+                }
+                default -> System.out.println("Elige una opción válida con el teclado");
             }
 
             printExportMenuOptions();
-            option = scanOption.nextLine();
+            option = sc.nextLine();
         }
     }
 
@@ -217,34 +182,37 @@ public class Main {
     }
 
     public static void warMenu() {
-        Scanner scanOption = new Scanner(System.in);
         battleSimulator = new BattleSimulator(party1, party2, battleSimulator.getGraveyard());
 
-        printWarMenuOptions();
-        String option = scanOption.nextLine();
+        String option = "valor pa que no pete";
 
         while (!option.equals("3")) {
+            if (battleSimulator.getParty1().hasCharacters() && battleSimulator.getParty2().hasCharacters()){
+                printWarMenuOptions();
+                option = sc.nextLine();
+            } else {
+                System.out.println("Al menos un equipo está vacío, volviendo al menú principal...");
+                option = "3";
+            }
 
             switch (option) {
-                case "1":
-                    System.out.println("Elegir combatiente del equipo 1 para el duelo");
-                    System.out.println("Número del 0 al " + (party1.getCharacterList().size() - 1));
-                    int index1 = Integer.parseInt(scanOption.nextLine());
-                    System.out.println("Elegir combatiente del equipo 2 para el duelo");
-                    System.out.println("Número del 0 al " + (party2.getCharacterList().size() - 1));
-                    int index2 = Integer.parseInt(scanOption.nextLine());
-                    battleSimulator.duel(index1, index2);
-                    break;
-                case "2":
-                    battleSimulator.fullBattle();
-                    break;
-                default:
-                    System.out.println("Elige una opción válida con el teclado");
+                case "1" -> duelMenu();
+                case "2" -> battleSimulator.fullBattle();
+                case "3" -> System.out.println();
+                default -> System.out.println("Elige una opción válida con el teclado");
             }
-            printWarMenuOptions();
-            option = scanOption.nextLine();
         }
 
+    }
+
+    private static void duelMenu() {
+        System.out.println("Elegir combatiente del equipo 1 para el duelo");
+        System.out.println("Número del 0 al " + (party1.getCharacterList().size() - 1));
+        int index1 = Integer.parseInt(sc.nextLine());
+        System.out.println("Elegir combatiente del equipo 2 para el duelo");
+        System.out.println("Número del 0 al " + (party2.getCharacterList().size() - 1));
+        int index2 = Integer.parseInt(sc.nextLine());
+        battleSimulator.duel(index1, index2);
     }
 
     private static void printWarMenuOptions() {
@@ -256,7 +224,6 @@ public class Main {
     }
 
     public static void inputDataForCharacters(int partyNumber) {
-        Scanner scanner = new Scanner(System.in);
         boolean whileBreaker = false;
         String charType = "";
         String charName;
@@ -269,51 +236,40 @@ public class Main {
 
         while (!whileBreaker){
             System.out.println("Elige el tipo de personaje (Warrior / Wizard):");
-            charType = scanner.nextLine();
+            charType = sc.nextLine();
             if (charType.equals("Warrior") || charType.equals("Wizard")){
                 whileBreaker = true;
             }
         }
         System.out.println("Elige el nombre de tu " + charType + ":");
-        charName = scanner.nextLine();
+        charName = sc.nextLine();
         System.out.println("Elige la vida de " + charName + ":");
-        charHP = scanner.nextInt();
-        scanner.nextLine();
+        charHP = sc.nextInt();
+        sc.nextLine();
 
 
-        switch (charType){
-            case "Warrior":
+        switch (charType) {
+            case "Warrior" -> {
                 System.out.println("Elige la resistencia de " + charName + ":");
-                charStamina = scanner.nextInt();
-                scanner.nextLine();
+                charStamina = sc.nextInt();
+                sc.nextLine();
                 System.out.println("Elige la fuerza de " + charName + ":");
-                charStrength = scanner.nextInt();
-                character = new Warrior(charName,charHP,charStamina,charStrength);
-                break;
-            case "Wizard":
+                charStrength = sc.nextInt();
+                character = new Warrior(charName, charHP, charStamina, charStrength);
+            }
+            case "Wizard" -> {
                 System.out.println("Elige el maná de " + charName + ":");
-                charMana = scanner.nextInt();
-                scanner.nextLine();
+                charMana = sc.nextInt();
+                sc.nextLine();
                 System.out.println("Elige la inteligencia de " + charName + ":");
-                charIntelligence = scanner.nextInt();
-                character = new Wizard(charName,charHP,charMana,charIntelligence);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + charType);
+                charIntelligence = sc.nextInt();
+                character = new Wizard(charName, charHP, charMana, charIntelligence);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + charType);
         }
-        switch (partyNumber){
-            case 1:
-                if (party1 == null) {
-                    party1 = new Party();
-                }
-                party1.addCharacter(character);
-                break;
-            case 2:
-                if (party2 == null) {
-                    party2 = new Party();
-                }
-                party2.addCharacter(character);
-                break;                
+        switch (partyNumber) {
+            case 1 -> party1.addCharacter(character);
+            case 2 -> party2.addCharacter(character);
         }
         System.out.println(charName + " ha sido creado e incluído en el equipo " + partyNumber + ".");
 

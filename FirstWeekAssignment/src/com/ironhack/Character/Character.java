@@ -28,7 +28,7 @@ public abstract class Character implements Attacker {
             "Kaylee la Luciérnaga", "Rubik RompeCabezas", "Elentari", "Gweon Barba Cana", "Tarian StormShield",
             "Kyla Lanzaveloz", "Zelda", "Roy Mustang", "Wulfric el Pecas", "Lady Vulture", "Ragnar Lothbrook",
             "Esteban Trabajos fundador de la Manzana", "Guillermo Puertas fundador de la Ventana", "Patata",
-            "Fray Perico", "Calcetín", "El guerrillero Martín", "El Pirata Garrapata"
+            "Fray Perico", "Calcetín", "El guerrillero Martín", "El Pirata Garrapata", "Vidrio"
     };
     public static final String SUFFIX = " Jr.";
 
@@ -57,7 +57,7 @@ public abstract class Character implements Attacker {
 
     public abstract void attack(Character character);
 
-    // Update Hp --> Falta llamar al metodo sendtograveyard??
+    // Update Hp
     public void decreaseHp (int attackValue) {
         setHp(getHp()-attackValue);
         if (getHp() <= 0) {
@@ -69,9 +69,6 @@ public abstract class Character implements Attacker {
     // Getters & Setters
     public int getId() {
         return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setId() {
@@ -109,41 +106,33 @@ public abstract class Character implements Attacker {
 
     public String toCSV() {
 
-        String csvString =
-                getId() + ", " +
-                getName() + ", " +
-                getCharacterType() + ", " +
-                getHp() + ", " +
-                getFirstParameter() + ", " +
-                getSecondParameter();
-
-        return csvString;
+        return getName() + ", " +
+        getCharacterType() + ", " +
+        getHp() + ", " +
+        getFirstParameter() + ", " +
+        getSecondParameter();
     }
     public String showCharacter() {
 
-        String characterAttributesListed =
-                "ID-" + getId() +
-                        " Tipo: " + getCharacterType()
-                        + " | Nombre: " + getName() +
-                        " | Vida: " + getHp() +
-                        " | " + getFirstParameterName() + ": " + getFirstParameter() +
-                        " | " + getSecondParameterName() + ": " + getSecondParameter();
-
-        return characterAttributesListed;
+        return "ID-" + getId() +
+                " Tipo: " + getCharacterType()
+                + " | Nombre: " + getName() +
+                " | Vida: " + getHp() +
+                " | " + getFirstParameterName() + ": " + getFirstParameter() +
+                " | " + getSecondParameterName() + ": " + getSecondParameter();
     }
 
     public static Character fromCSV(String csvString) {
         String[] values = csvString.split(", ");
-        int id = Integer.parseInt(values[0]);
-        String name = values[1];
-        String characterType = values[2];
-        int hp = Integer.parseInt(values[3]);
-        int firstParameter = Integer.parseInt(values[4]);
-        int secondParameter = Integer.parseInt(values[5]);
+        String name = values[0];
+        String characterType = values[1];
+        int hp = Integer.parseInt(values[2]);
+        int firstParameter = Integer.parseInt(values[3]);
+        int secondParameter = Integer.parseInt(values[4]);
 
         return switch (characterType) {
-            case CHARACTER_WARRIOR -> new Warrior(id, name, hp, firstParameter, secondParameter);
-            case CHARACTER_WIZARD -> new Wizard(id, name, hp, firstParameter, secondParameter);
+            case CHARACTER_WARRIOR -> new Warrior(name, hp, firstParameter, secondParameter);
+            case CHARACTER_WIZARD -> new Wizard(name, hp, firstParameter, secondParameter);
             default -> null;
         };
     }
@@ -153,8 +142,6 @@ public abstract class Character implements Attacker {
     public abstract int getSecondParameter();
     public abstract String getSecondParameterName();
     public abstract String getCharacterType();
-
-//    public abstract static Character createRandomCharacter();
 
     protected static String getRandomName() {
         Random random = new Random();
