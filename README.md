@@ -21,10 +21,12 @@
    . Teams will be randomly generated with limited stats, but you can add characters to it (so you are allowed to balance the number of fighters).
   
    . You can check the size and all the members from the random generated batallion.
+   
+   . The names will be always different (We've got a lot of heroes with a lot of family members in our heroes pool). 
   
 3. Import/Export Teams
 
-   . You can import a team as a CSV file, or also export a team that you are playing with.
+   . You can import a team as a CSV file, or also export one that you are playing with (maybe because you got the astonishing "Mara la de la Vara Jr. Jr. Jr. Jr. Jr. Jr. Jr. Jr." in your team).
    
    . You can manually add characters to them, as custom characters (again, no stats limitation).
 
@@ -38,11 +40,11 @@
 
    . You can make the teams battle automatically, at any given moment. 
    
-   . This means, you can start fighting selecting the fighters; but if you get tired of it, just let it finish on its own. You can also do this at the start.
+   . This means, you can start a Face to Face battle; but if you get tired of it, just let it finish on its own. You can also do this at the start.
    
 3. Return to Main Menu.
    
-   . You can return to the main menu at any given moment, EVEN while you are in the middle of a fight. The status of the battle won't be lose.
+   . You can return to the main menu at any given moment, EVEN while you are in the middle of a fight. The status of the battle won't be lost.
    
    . You are also allowed to add a reinforcement to a team for the actual battle!
    
